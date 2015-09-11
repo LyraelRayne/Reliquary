@@ -36,11 +36,11 @@ targetCompatiblity = 1.7
 apply plugin: 'forge'
 
 group = 'xreliquary' // Your main package.
-version = "1.2"
-archivesBaseName = 'Reliquary'
+version = "1.2-lite"
+archivesBaseName = 'Reliquary-lite'
 
 minecraft {
-	version = "1.7.10-10.13.0.1180"
+	version = "1.7.10-10.13.4.1448-1.7.10"
 }
 
 jar {
@@ -66,3 +66,5 @@ processResources
         exclude 'mcmod.info'
     }
 }
+
+idea { module { inheritOutputDirs = true } }

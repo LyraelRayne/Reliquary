@@ -1,7 +1,7 @@
 [
 {
-  "modid": "xreliquary",
-  "name": "Reliquary",
+  "modid": "reliquary-lite",
+  "name": "Reliquary Lite",
   "description": "Two words: magical swag. Oh, and a gun.",
   "version": "${version}",
   "mcversion": "1.2.DEV",
@@ -10,7 +10,7 @@
   "authorList": [
     "x3n0ph0b3",
     "TheMike"],
-  "credits": "Originally made by x3n0ph0b3, now maintained by TheMike.",
+  "credits": "Originally made by x3n0ph0b3, then maintained by TheMike. Now butchered by LyraelRayne!",
   "logoFile": "/mods/xreliquary/textures/logo/xrlogo.png",
   "screenshots": [
   ],

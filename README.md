@@ -1,17 +1,14 @@
-Reliquary [![Build Status](https://drone.io/github.com/TrainerGuy22/Reliquary/status.png)](https://drone.io/github.com/TrainerGuy22/Reliquary/latest)
+Reliquary Lite
 =========
-
-Updating - Important!
-=========
-
-If you're using our drone.io to update the mod, don't forget to delete libSandstone.jar. No need to redownload, the mod does that automatically.
 
 Description
 =========
 
-The offical repository of Reliquary! That mod, with the magical swag, and a weapon, and stuff.
+The offical repository of Reliquary Lite! This is a cut down version of Reliquary containing only basic features.
+The intent is to create a version of Reliquary which has the updated versions of all of the cool items without the "beta"
+features such as the new potion crafting system, etc.
 
-Originally made by x3n0ph0b3, Reliquary is now developed by both TheMike and x3n0ph0b3.
+Hats off to x3n0ph0b3 and TheMike for creating the original Reliquary.
 
 Building
 =========
