@@ -13,3 +13,6 @@
 out/
 /bin
 /Releases
+*.iws
+/run/
+/libs/
