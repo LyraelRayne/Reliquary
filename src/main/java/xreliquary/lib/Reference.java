@@ -16,8 +16,6 @@ public class Reference {
 
     // miscellaneous configurable things
     //public static final int CAPACITY_UPGRADE_INCREMENT = 64;
-    public static final int PESTLE_USAGE_MAX = 5; // the number of times you
-    // have to use the pestle.
 
     public static final String ART_PATH_ENTITIES = "textures/entities/";
     public static final String THROWN_ITEM_SPRITES = "thrownItemsSheet.png";
@@ -27,7 +25,7 @@ public class Reference {
     public static final int ZOMBIE_ZHU_META = 0;
     public static final int SKELETON_ZHU_META = 1;
     public static final int WITHER_SKELETON_ZHU_META = 2;
-    public static final int CREEPER_ZHU_META = 3;;
+    public static final int CREEPER_ZHU_META = 3;
 
     public static final int SKELETON_INGREDIENT_META = 0;
     public static final int WITHER_INGREDIENT_META = 1;
@@ -99,13 +97,6 @@ public class Reference {
     public static final int HANDGUN_RECOIL_SKILL_OFFSET = 5;
     public static final int HANDGUN_COOLDOWN_SKILL_OFFSET = 5;
     public static final int HANDGUN_KNOCKBACK_SKILL_OFFSET = 0;
-
-
-    //Packet ID Section for identifying packet types, now deprecated.
-//    public static final int RECOIL_PACKET_ID = 0;
-//    public static final int RECOIL_COMPENSATION_PACKET_ID = 1;
-//    public static final int RELOAD_PACKET_ID = 0;
-//    public static final int RELOAD_COMPENSATION_PACKET_ID = 1;
 
     //Shot Type Indexes
     public static final int NEUTRAL_SHOT_INDEX = 1;

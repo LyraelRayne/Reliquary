@@ -13,8 +13,6 @@ import net.minecraft.world.World;
 import xreliquary.Reliquary;
 import xreliquary.lib.Names;
 import xreliquary.lib.Reference;
-import xreliquary.util.alkahestry.AlkahestRecipe;
-import xreliquary.util.alkahestry.Alkahestry;
 
 @ContentInit
 public class ItemInfernalTear extends ItemToggleable {
@@ -57,12 +55,5 @@ public class ItemInfernalTear extends ItemToggleable {
             return;
         EntityPlayer player = (EntityPlayer)e;
         String ident = ist.getTagCompound().getString("itemID");
-        if (Alkahestry.getRegistry().containsKey(ident)) {
-            AlkahestRecipe recipe = Alkahestry.getRegistry().get(ident);
-            // You need above Cobblestone level to get XP.
-            if (recipe.yield != 32 && recipe.cost != 4) {
-                player.addExperience((int) (Math.round(((1d / (double) recipe.cost) / (double) recipe.yield) * 150)));
-            }
-        }
     }
 }

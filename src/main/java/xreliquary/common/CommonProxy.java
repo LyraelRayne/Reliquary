@@ -1,31 +1,22 @@
 package xreliquary.common;
 
+import xreliquary.Reliquary;
+import xreliquary.entities.*;
+import xreliquary.entities.potion.EntityAttractionPotion;
+import xreliquary.entities.potion.EntityFertilePotion;
+import xreliquary.entities.shot.*;
+import xreliquary.event.CommonEventHandler;
+import xreliquary.init.XRRecipes;
+import xreliquary.items.ItemDestructionCatalyst;
+import xreliquary.lib.Names;
 import com.google.common.collect.ImmutableList;
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
 import lib.enderwizards.sandstone.mod.config.ConfigReference;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.IProjectile;
 import net.minecraftforge.common.MinecraftForge;
-import xreliquary.Reliquary;
-import xreliquary.blocks.tile.TileEntityAltar;
-import xreliquary.blocks.tile.TileEntityCauldron;
-import xreliquary.blocks.tile.TileEntityMortar;
-import xreliquary.common.gui.GUIHandler;
-import xreliquary.entities.*;
-import xreliquary.entities.potion.*;
-import xreliquary.entities.shot.*;
-import xreliquary.event.CommonEventHandler;
-import xreliquary.init.XRRecipes;
-import xreliquary.items.ItemDestructionCatalyst;
-import xreliquary.items.alkahestry.AlkahestryCraftingRecipe;
-import xreliquary.items.alkahestry.AlkahestryDrainRecipe;
-import xreliquary.items.alkahestry.AlkahestryRedstoneRecipe;
-import xreliquary.lib.Names;
-import xreliquary.util.alkahestry.Alkahestry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +27,6 @@ public class CommonProxy {
     public void preInit() {
         try {
             XRRecipes.init();
-            Alkahestry.init();
         } catch (Exception e) {
             e.printStackTrace();
             FMLCommonHandler.instance().raiseException(e, "Reliquary failed to initiate recipies.", true);
@@ -74,24 +64,11 @@ public class CommonProxy {
 
 
     public void init() {
-        AlkahestryCraftingRecipe.returnedItem = Reliquary.CONTENT.getItem(Names.alkahestry_tome);
-        AlkahestryRedstoneRecipe.returnedItem = Reliquary.CONTENT.getItem(Names.alkahestry_tome);
 
-        AlkahestryCraftingRecipe alkahestryCraftingRecipeHandler = new AlkahestryCraftingRecipe();
-        AlkahestryDrainRecipe alkahestryDrainRecipeHandler = new AlkahestryDrainRecipe();
-
-        MinecraftForge.EVENT_BUS.register(alkahestryCraftingRecipeHandler);
-        MinecraftForge.EVENT_BUS.register(alkahestryDrainRecipeHandler);
-
-        FMLCommonHandler.instance().bus().register(alkahestryCraftingRecipeHandler);
-        FMLCommonHandler.instance().bus().register(alkahestryDrainRecipeHandler);
-
-        NetworkRegistry.INSTANCE.registerGuiHandler(Reliquary.INSTANCE, new GUIHandler());
         FMLCommonHandler.instance().bus().register(new CommonEventHandler());
         MinecraftForge.EVENT_BUS.register(new CommonEventHandler());
 
         this.registerEntities();
-        this.registerTileEntities();
     }
 
     public void initOptions() {
@@ -102,7 +79,6 @@ public class CommonProxy {
         //global HUD positions
         Reliquary.CONFIG.require(Names.hud_positions, Names.sojourner_staff, new ConfigReference(3).setMinimumValue(1).setMaximumValue(4));
         Reliquary.CONFIG.require(Names.hud_positions, Names.handgun, new ConfigReference(3).setMinimumValue(1).setMaximumValue(4));
-        Reliquary.CONFIG.require(Names.hud_positions, Names.alkahestry_tome, new ConfigReference(3).setMinimumValue(1).setMaximumValue(4));
         Reliquary.CONFIG.require(Names.hud_positions, Names.destruction_catalyst, new ConfigReference(3).setMinimumValue(1).setMaximumValue(4));
         Reliquary.CONFIG.require(Names.hud_positions, Names.elsewhere_flask, new ConfigReference(3).setMinimumValue(1).setMaximumValue(4));
         Reliquary.CONFIG.require(Names.hud_positions, Names.ender_staff, new ConfigReference(3).setMinimumValue(1).setMaximumValue(4));
@@ -118,7 +94,6 @@ public class CommonProxy {
 
         //easy mode recipes
         Reliquary.CONFIG.require(Names.easy_mode_recipes, Names.fortune_coin, new ConfigReference(false));
-        Reliquary.CONFIG.require(Names.easy_mode_recipes, Names.altar, new ConfigReference(false));
         Reliquary.CONFIG.require(Names.easy_mode_recipes, Names.infernal_chalice, new ConfigReference(false));
         Reliquary.CONFIG.require(Names.easy_mode_recipes, Names.ender_staff, new ConfigReference(false));
         Reliquary.CONFIG.require(Names.easy_mode_recipes, Names.salamander_eye, new ConfigReference(false));
@@ -128,7 +103,6 @@ public class CommonProxy {
         Reliquary.CONFIG.require(Names.easy_mode_recipes, Names.pyromancer_staff, new ConfigReference(false));
         Reliquary.CONFIG.require(Names.easy_mode_recipes, Names.magicbane, new ConfigReference(false));
         Reliquary.CONFIG.require(Names.easy_mode_recipes, Names.lantern_of_paranoia, new ConfigReference(false));
-        Reliquary.CONFIG.require(Names.easy_mode_recipes, Names.alkahestry_tome, new ConfigReference(false));
         Reliquary.CONFIG.require(Names.easy_mode_recipes, Names.wraith_node, new ConfigReference(false));
         Reliquary.CONFIG.require(Names.easy_mode_recipes, Names.glacial_staff, new ConfigReference(false));
         Reliquary.CONFIG.require(Names.easy_mode_recipes, Names.sojourner_staff, new ConfigReference(false));
@@ -181,15 +155,6 @@ public class CommonProxy {
         Reliquary.CONFIG.require(Names.mob_drop_probability, Names.ender_heart + "_base", new ConfigReference(10));
         Reliquary.CONFIG.require(Names.mob_drop_probability, Names.ender_heart + "_looting", new ConfigReference(5));
 
-        //alkahestry tome configs
-        Reliquary.CONFIG.require(Names.alkahestry_tome, "redstone_limit", new ConfigReference(250).setMinimumValue(0).setMaximumValue(itemCap));
-
-        //altar configs
-        Reliquary.CONFIG.require(Names.altar, "redstone_cost", new ConfigReference(3).setMinimumValue(0));
-        Reliquary.CONFIG.require(Names.altar, "time_in_minutes", new ConfigReference(20).setMinimumValue(0));
-        Reliquary.CONFIG.require(Names.altar, "maximum_time_variance_in_minutes", new ConfigReference(5).setMinimumValue(0));
-        Reliquary.CONFIG.require(Names.altar, "output_light_level_while_active", new ConfigReference(16).setMaximumValue(16).setMinimumValue(0));
-
         //angelic feather configs
         Reliquary.CONFIG.require(Names.angelic_feather, "hunger_cost_percent", new ConfigReference(50).setMinimumValue(0));
         Reliquary.CONFIG.require(Names.angelic_feather, "leaping_potency", new ConfigReference(1).setMinimumValue(0).setMaximumValue(5));
@@ -197,12 +162,6 @@ public class CommonProxy {
         //angelheart vial configs
         Reliquary.CONFIG.require(Names.angelheart_vial, "heal_percentage_of_max_life", new ConfigReference(25));
         Reliquary.CONFIG.require(Names.angelheart_vial, "remove_negative_status", new ConfigReference(true));
-
-        //apothecary cauldron configs
-        List<String> heatSources = ImmutableList.of();
-        Reliquary.CONFIG.require(Names.apothecary_cauldron, "redstone_limit", new ConfigReference(5).setMinimumValue(0).setMaximumValue(100));
-        Reliquary.CONFIG.require(Names.apothecary_cauldron, "cook_time", new ConfigReference(160).setMinimumValue(20).setMaximumValue(32000));
-        Reliquary.CONFIG.require(Names.apothecary_cauldron, "heat_sources", new ConfigReference(heatSources));
 
         //destruction catalyst configs
         Reliquary.CONFIG.require(Names.destruction_catalyst, "mundane_blocks", new ConfigReference(new ArrayList<String>(ItemDestructionCatalyst.ids)));
@@ -377,12 +336,6 @@ public class CommonProxy {
         }
     }
 
-    public void registerTileEntities() {
-        GameRegistry.registerTileEntity(TileEntityAltar.class, "reliquaryAltar");
-        GameRegistry.registerTileEntity(TileEntityMortar.class, "apothecaryMortar");
-        GameRegistry.registerTileEntity(TileEntityCauldron.class, "reliquaryCauldron");
-    }
-
     public void registerEntities() {
         EntityRegistry.registerModEntity(EntityHolyHandGrenade.class, "entityHGrenade", 0, Reliquary.INSTANCE, 128, 5, true);
         EntityRegistry.registerModEntity(EntityGlowingWater.class, "entityHolyWater", 1, Reliquary.INSTANCE, 128, 5, true);
@@ -397,11 +350,8 @@ public class CommonProxy {
         EntityRegistry.registerModEntity(EntitySandShot.class, "entitySandShot", 10, Reliquary.INSTANCE, 128, 5, true);
         EntityRegistry.registerModEntity(EntityStormShot.class, "entityStormShot", 11, Reliquary.INSTANCE, 128, 5, true);
         EntityRegistry.registerModEntity(EntityAttractionPotion.class, "entitySplashAphrodite", 12, Reliquary.INSTANCE, 128, 5, true);
-        EntityRegistry.registerModEntity(EntityThrownXRPotion.class, "entityThrownPotion", 13, Reliquary.INSTANCE, 128, 5, true);
-        EntityRegistry.instance().lookupModSpawn(EntityThrownXRPotion.class,false).setCustomSpawning(null, false);
         EntityRegistry.registerModEntity(EntityFertilePotion.class, "entitySplashFertility", 21, Reliquary.INSTANCE, 128, 5, true);
         EntityRegistry.registerModEntity(EntityKrakenSlime.class, "entityKSlime", 22, Reliquary.INSTANCE, 128, 5, true);
         EntityRegistry.registerModEntity(EntityEnderStaffProjectile.class, "entityEnderStaffProjectile", 23, Reliquary.INSTANCE, 128, 5, true);
     }
-
 }

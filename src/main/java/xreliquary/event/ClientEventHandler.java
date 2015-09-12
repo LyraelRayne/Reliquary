@@ -42,7 +42,6 @@ public class ClientEventHandler {
         handleTickIncrement(event);
         handleHandgunHUDCheck();
         handleSojournerHUDCheck();
-        handleTomeHUDCheck();
         handleDestructionCatalystHUDCheck();
         handleEnderStaffHUDCheck();
         //handles glacial staff as well
@@ -97,20 +96,6 @@ public class ClientEventHandler {
             event.result = 0;
             return;
         }
-    }
-
-    public void handleTomeHUDCheck() {
-        Minecraft mc = Minecraft.getMinecraft();
-        if (!Minecraft.isGuiEnabled() || !mc.inGameHasFocus)
-            return;
-        EntityPlayer player = mc.thePlayer;
-
-        if (player == null || player.getCurrentEquippedItem() == null || !(player.getCurrentEquippedItem().getItem() instanceof ItemAlkahestryTome))
-            return;
-
-        ItemStack tomeStack = player.getCurrentEquippedItem();
-        ItemStack redstoneStack = new ItemStack(Items.redstone, NBTHelper.getInteger("redstone", tomeStack), 0);
-        renderStandardTwoItemHUD(mc, player, tomeStack, redstoneStack, Reliquary.CONFIG.getInt(Names.hud_positions, Names.alkahestry_tome), 0, 0);
     }
 
     public void handleDestructionCatalystHUDCheck(){

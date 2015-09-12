@@ -10,7 +10,6 @@ public class Names {
     public static final String magazine = "magazine";
     public static final String magazine_overlay = "magazine_overlay";
     public static final String sojourner_staff = "sojourner_staff";
-    public static final String alkahestry_tome = "alkahest_tome";
     public static final String holy_hand_grenade = "holy_hand_grenade";
     public static final String fortune_coin = "fortune_coin";
     public static final String fortune_coin_overlay = "fortune_coin_overlay";
@@ -75,11 +74,8 @@ public class Names {
     // potion info
     public static final String potion = "potion";
     public static final String potion_splash = "potion_splash";
-    public static final String potion_overlay = "potion_overlay";
     public static final String potion_splash_overlay = "potion_splash_overlay";
     public static final String potion_essence = "potion_essence";
-    public static final String potion_ingredient = "potion_ingredient";
-    public static final String condensed_potion = "condensed_potion";
 
     public static final String glowing_water = "glowing_water";
     public static final String angelheart_vial = "angelheart_vial";
@@ -87,15 +83,9 @@ public class Names {
     public static final String attraction_potion = "attraction_potion";
 
     // blocks
-    public static final String altar_idle = "altar_idle";
-    public static final String altar = "altar";
     public static final String lilypad = "lilypad";
     public static final String wraith_node = "wraith_node";
     public static final String interdiction_torch = "interdiction_torch";
-    public static final String apothecary_cauldron = "apothecary_cauldron";
-    public static final String apothecary_mortar = "apothecary_mortar";
-    public static final String cauldron_water = "cauldron_water";
-    public static final String cauldron_bubble = "cauldron_bubble";
 
     //these are for configs, they're just the names of things I didn't want to magic string.
     public static final String recipe_enabled = "recipe_enabled";

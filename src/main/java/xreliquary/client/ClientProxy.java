@@ -1,21 +1,21 @@
 package xreliquary.client;
 
-import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import xreliquary.Reliquary;
-import xreliquary.blocks.tile.TileEntityMortar;
-import xreliquary.client.render.*;
+import xreliquary.client.render.ItemRendererHandgun;
+import xreliquary.client.render.RenderShot;
+import xreliquary.client.render.RenderThrown;
 import xreliquary.common.CommonProxy;
 import xreliquary.entities.*;
-import xreliquary.entities.potion.*;
+import xreliquary.entities.potion.EntityAttractionPotion;
+import xreliquary.entities.potion.EntityFertilePotion;
 import xreliquary.entities.shot.*;
 import xreliquary.event.ClientEventHandler;
 import xreliquary.lib.Names;
@@ -37,7 +37,6 @@ public class ClientProxy extends CommonProxy {
         this.registerRenderers();
     }
 
-
     public void registerRenderers() {
         RenderingRegistry.registerEntityRenderingHandler(EntityBlazeShot.class, new RenderShot());
         RenderingRegistry.registerEntityRenderingHandler(EntityBusterShot.class, new RenderShot());
@@ -55,13 +54,6 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityKrakenSlime.class, new RenderThrown(13));
         RenderingRegistry.registerEntityRenderingHandler(EntitySpecialSnowball.class, new RenderSnowball(Items.snowball));
         RenderingRegistry.registerEntityRenderingHandler(EntityEnderStaffProjectile.class, new RenderSnowball(Items.ender_pearl));
-        RenderingRegistry.registerEntityRenderingHandler(EntityThrownXRPotion.class, new RenderThrownPotion());
-
-        RenderingRegistry.registerBlockHandler(new RenderApothecaryCauldron());
-
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMortar.class, new RenderApothecaryMortar());
-
-        MinecraftForgeClient.registerItemRenderer(ItemBlock.getItemFromBlock(Reliquary.CONTENT.getBlock(Names.apothecary_mortar)), new ItemRendererApothecaryMortar());
         MinecraftForgeClient.registerItemRenderer(Reliquary.CONTENT.getItem(Names.handgun), new ItemRendererHandgun());
     }
 

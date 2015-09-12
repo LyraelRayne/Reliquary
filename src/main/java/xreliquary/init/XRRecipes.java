@@ -7,11 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.RecipeSorter;
 import xreliquary.Reliquary;
-import xreliquary.items.alkahestry.AlkahestryCraftingRecipe;
-import xreliquary.items.alkahestry.AlkahestryDrainRecipe;
-import xreliquary.items.alkahestry.AlkahestryRedstoneRecipe;
 import xreliquary.lib.Names;
 import xreliquary.lib.Reference;
 
@@ -65,7 +61,7 @@ public class XRRecipes {
     public static ItemStack shellFragment() { return ingredient(Reference.SHELL_INGREDIENT_META); }
     public static ItemStack squidBeak() { return ingredient(Reference.SQUID_INGREDIENT_META); }
     public static ItemStack spiderFangs() { return ingredient(Reference.SPIDER_INGREDIENT_META); }
-    
+
     public static ItemStack heartPearl(int m) { return new ItemStack(getItem(Names.heart_pearl), 1, m); }
 
     public static ItemStack nianZhu(int m) { return new ItemStack(getItem(Names.heart_zhu), 1, m); }
@@ -102,36 +98,10 @@ public class XRRecipes {
     }
 
     public static void init() {
-        // tome and alkahestry recipes
-        GameRegistry.addRecipe(new AlkahestryDrainRecipe());
-        GameRegistry.addRecipe(new AlkahestryRedstoneRecipe());
-        GameRegistry.addRecipe(new AlkahestryCraftingRecipe());
-
-        RecipeSorter.register(Reference.MOD_ID + ":alkahest_crafting", AlkahestryCraftingRecipe.class, RecipeSorter.Category.SHAPELESS, "before:minecraft:shaped");
-        RecipeSorter.register(Reference.MOD_ID + ":alkahest_redstone", AlkahestryRedstoneRecipe.class, RecipeSorter.Category.SHAPELESS, "before:" + Reference.MOD_ID + ":alkahest_crafting");
-        RecipeSorter.register(Reference.MOD_ID + ":alkahest_drain", AlkahestryDrainRecipe.class, RecipeSorter.Category.SHAPELESS, "before:" + Reference.MOD_ID + ":alkahest_redstone");
 
         //misc recipes
         //frozen cores to make packed ice.
         addRecipe(true, true, new ItemStack(Blocks.packed_ice, 1, 0), Blocks.ice, Blocks.ice, Blocks.ice, Blocks.ice, Blocks.ice, Blocks.ice, Blocks.ice, Blocks.ice, frozenCore());
-
-        //apothecary mortar recipe
-        addRecipe(false, false, new ItemStack(Reliquary.CONTENT.getBlock(Names.apothecary_mortar), 1, 0), "gng", "ngn", "nnn", 'n', Blocks.quartz_block, 'g', creeperGland());
-
-        //apothecary cauldron recipe
-        addRecipe(false, false, new ItemStack(Reliquary.CONTENT.getBlock(Names.apothecary_cauldron), 1, 0), "gng", "ici", "nmn", 'g', creeperGland(), 'n', enderHeart(), 'i', infernalClaw(), 'c', Items.cauldron, 'm', moltenCore());
-
-        //alkahestry tome
-        if (isEasyMode(Names.alkahestry_tome))
-            addRecipe(true, false, new ItemStack(getItem(Names.alkahestry_tome), 1, 0), Items.book, getItem(Names.witch_hat), moltenCore(), witherSkull());
-        else
-            addRecipe(true, false, new ItemStack(getItem(Names.alkahestry_tome), 1, 0), moltenCore(), getItem(Names.witch_hat), stormEye(), creeperGland(), Items.book, slimePearl(), spiderFangs(), witherSkull(), enderHeart());
-
-        //glowstone altar
-        if (isEasyMode(Names.altar))
-            addRecipe(true, false, new ItemStack(Reliquary.CONTENT.getBlock(Names.altar_idle), 1), Blocks.obsidian, Blocks.redstone_lamp, enderHeart(), creeperGland());
-        else
-            addRecipe(false, false, new ItemStack(Reliquary.CONTENT.getBlock(Names.altar_idle), 1), "dnd", "olo", "dgd", 'd', Items.glowstone_dust, 'n', enderHeart(), 'o', Blocks.obsidian, 'l', Blocks.redstone_lamp, 'g', creeperGland());
 
         //lilypad
         addRecipe(true, false, new ItemStack(Reliquary.CONTENT.getBlock(Names.lilypad), 1), fertileEssence(), fertileEssence(), fertileEssence(), Blocks.waterlily);
@@ -395,7 +365,7 @@ public class XRRecipes {
 		/* potions and splash potions */
 //
         // empty vial
-        addRecipe(false, false, new ItemStack(getItem(Names.potion), 1, 0), "g g", "g g", " g ", 'g', Blocks.glass_pane);
+        //addRecipe(false, false, new ItemStack(getItem(Names.potion), 1, 0), "g g", "g g", " g ", 'g', Blocks.glass_pane);
 
         //non-standard potion list.
 
