@@ -36,8 +36,8 @@ targetCompatiblity = 1.7
 apply plugin: 'forge'
 
 group = 'xreliquary' // Your main package.
-version = "1.2-lite"
-archivesBaseName = 'Reliquary-lite'
+version = "1.2.LITE"
+archivesBaseName = 'xreliquary'
 
 minecraft {
 	version = "1.7.10-10.13.4.1448-1.7.10"
