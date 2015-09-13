@@ -71,6 +71,13 @@ public class Names {
     public static final String fertile_essence = "fertile_essence";
 
     public static final String gun_part = "gun_part";
+
+    // potion info
+    public static final String condensed_potion = "condensed_potion";
+    public static final String condensed_potion_splash = "condensed_potion_splash";
+    public static final String condensed_potion_overlay = "condensed_potion_overlay";
+    public static final String condensed_potion_splash_overlay = "condensed_potion_splash_overlay";
+
     // potion info
     public static final String potion = "potion";
     public static final String potion_splash = "potion_splash";

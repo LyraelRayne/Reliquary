@@ -2,8 +2,7 @@ package xreliquary.common;
 
 import xreliquary.Reliquary;
 import xreliquary.entities.*;
-import xreliquary.entities.potion.EntityAttractionPotion;
-import xreliquary.entities.potion.EntityFertilePotion;
+import xreliquary.entities.potion.*;
 import xreliquary.entities.shot.*;
 import xreliquary.event.CommonEventHandler;
 import xreliquary.init.XRRecipes;
@@ -118,6 +117,7 @@ public class CommonProxy {
         Reliquary.CONFIG.require(Names.easy_mode_recipes, Names.infernal_tear, new ConfigReference(false));
         Reliquary.CONFIG.require(Names.easy_mode_recipes, Names.fertile_essence, new ConfigReference(false));
         Reliquary.CONFIG.require(Names.easy_mode_recipes, Names.seeker_shot, new ConfigReference(false));
+        Reliquary.CONFIG.require(Names.easy_mode_recipes, Names.lilypad, new ConfigReference(false));
 
         //mob drop addition probabilities
         Reliquary.CONFIG.require(Names.mob_drop_probability, Names.zombie_heart + "_base", new ConfigReference(10));
@@ -353,5 +353,17 @@ public class CommonProxy {
         EntityRegistry.registerModEntity(EntityFertilePotion.class, "entitySplashFertility", 21, Reliquary.INSTANCE, 128, 5, true);
         EntityRegistry.registerModEntity(EntityKrakenSlime.class, "entityKSlime", 22, Reliquary.INSTANCE, 128, 5, true);
         EntityRegistry.registerModEntity(EntityEnderStaffProjectile.class, "entityEnderStaffProjectile", 23, Reliquary.INSTANCE, 128, 5, true);
+
+        // Legacy potions
+        EntityRegistry.registerModEntity(EntityCondensedSplashAphrodite.class, "entitySplashAphrodite", 12, Reliquary.INSTANCE, 128, 5, true);
+        EntityRegistry.registerModEntity(EntityCondensedSplashBlindness.class, "entitySplashBlindness", 13, Reliquary.INSTANCE, 128, 5, true);
+        EntityRegistry.registerModEntity(EntityCondensedSplashConfusion.class, "entitySplashConfusion", 14, Reliquary.INSTANCE, 128, 5, true);
+        EntityRegistry.registerModEntity(EntityCondensedSplashHarm.class, "entitySplashHarm", 15, Reliquary.INSTANCE, 128, 5, true);
+        EntityRegistry.registerModEntity(EntityCondensedSplashPoison.class, "entitySplashPoison", 16, Reliquary.INSTANCE, 128, 5, true);
+        EntityRegistry.registerModEntity(EntityCondensedSplashRuin.class, "entitySplashRuin", 17, Reliquary.INSTANCE, 128, 5, true);
+        EntityRegistry.registerModEntity(EntityCondensedSplashSlowness.class, "entitySplashSlowness", 18, Reliquary.INSTANCE, 128, 5, true);
+        EntityRegistry.registerModEntity(EntityCondensedSplashWeakness.class, "entitySplashWeakness", 19, Reliquary.INSTANCE, 128, 5, true);
+        EntityRegistry.registerModEntity(EntityCondensedSplashWither.class, "entitySplashWither", 20, Reliquary.INSTANCE, 128, 5, true);
+        EntityRegistry.registerModEntity(EntityCondensedFertility.class, "entitySplashFertility", 21, Reliquary.INSTANCE, 128, 5, true);
     }
 }

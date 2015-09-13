@@ -60,4 +60,16 @@ public class Colors {
     public static final String WITHER_SKELETON_HEART_ZHU_COLOR = "333329";
     public static final String CREEPER_HEART_ZHU_COLOR = "00CC00";
 
+    // Legacy potion colours
+    public static final String DIGGING_COLOR = "DDDD22";
+    public static final String SPEED_COLOR = "0022FF";
+    public static final String STRENGTH_COLOR = "440000";
+    public static final String HEALING_COLOR = "EE5566";
+    public static final String BOUNDING_COLOR = "44BB44";
+    public static final String FIRE_WARDING_COLOR = "DD9900";
+    public static final String BREATHING_COLOR = "0088FF";
+    public static final String INFRAVISION_COLOR = "000044";
+    public static final String ACID_COLOR = "DD9900";
+    public static final String SLOWING_COLOR = "0022FF";
+
 }
